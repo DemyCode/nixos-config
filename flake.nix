@@ -8,7 +8,7 @@
   outputs = { nixpkgs, ... } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
-      modules = [ ./configuration.nix ./hardware-configuration.nix ];
+      modules = [ ./configuration.nix ];
     };
   };
 }
