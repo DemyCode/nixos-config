@@ -93,13 +93,13 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.hyprland = {
-    enable = true;
-    # set the flake package
-  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  # programs.hyprland = {
+  #   enable = true;
+  #   # set the flake package
+  # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   # make sure to also set the portal package, so that they are in sync
-  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
+  # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -109,7 +109,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    git vscode
+    git vscode tig
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
