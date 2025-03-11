@@ -49,6 +49,10 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    "./.config/nvim/" = {
+      source = ./LazyVim;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
@@ -75,6 +79,5 @@
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
-    extraConfig = lib.fileContents ./LazyVim/init.lua;
   };
 }
