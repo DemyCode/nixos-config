@@ -93,6 +93,12 @@
 
   programs.nix-ld.enable = true;
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+  programs.neovim.extraConfig = lib.fileContents ./LazyVim/init.lua;
+
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
   services.xserver.videoDrivers = [ "nvidia" ];
