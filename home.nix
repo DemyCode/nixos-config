@@ -50,7 +50,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     "./.config/nvim/" = {
-      source = ./LazyVim;
+      source = ./starter;
       recursive = true;
     };
   };
