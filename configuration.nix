@@ -87,6 +87,7 @@
     git
     spotify
     librewolf
+    uv
   ];
 
   # Nvidia setup
