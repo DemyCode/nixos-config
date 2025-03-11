@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
     [ 
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -66,6 +67,13 @@
     ];
   };
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "mehdib" = import ./home.nix;
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     inputs.nix-software-center.packages.${system}.nix-software-center
@@ -92,12 +100,6 @@
   ];
 
   programs.nix-ld.enable = true;
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-  programs.neovim.extraConfig = lib.fileContents ./LazyVim/init.lua;
 
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
