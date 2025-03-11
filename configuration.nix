@@ -108,6 +108,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  nix.settings.experimental-features = "nix-command flakes";
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
