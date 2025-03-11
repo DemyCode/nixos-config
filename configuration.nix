@@ -88,7 +88,10 @@
     spotify
     librewolf
     uv
+    python3
   ];
+
+  programs.nix-ld.enable = true;
 
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
