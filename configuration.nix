@@ -84,6 +84,7 @@
     python3
     clang
     unzip
+    nodejs
   ];
 
   fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
