@@ -96,6 +96,10 @@
     ripgrep
     cargo
     pkgs.nixfmt-rfc-style
+    temurin-bin
+    prismlauncher-unwrapped
+    glxinfo
+    vscode
   ];
 
   fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
@@ -116,6 +120,9 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
   nix.settings.experimental-features = "nix-command flakes";
 
