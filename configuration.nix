@@ -80,6 +80,7 @@
     spotify
     librewolf
     vscode
+    wget
   ];
 
   # Nvidia setup
