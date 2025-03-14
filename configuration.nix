@@ -6,14 +6,12 @@
   config,
   pkgs,
   inputs,
-  lib,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -75,36 +73,14 @@
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "mehdib" = import ./home.nix;
-    };
-  };
-
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     inputs.nix-software-center.packages.${system}.nix-software-center
     git
     spotify
     librewolf
-    uv
-    python3
-    clang
-    unzip
-    nodejs
-    ripgrep
-    cargo
-    pkgs.nixfmt-rfc-style
-    temurin-bin
-    prismlauncher-unwrapped
-    glxinfo
     vscode
   ];
-
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
-
-  programs.nix-ld.enable = true;
 
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
@@ -120,11 +96,6 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-
-  nix.settings.experimental-features = "nix-command flakes";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
