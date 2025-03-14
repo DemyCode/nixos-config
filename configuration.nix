@@ -85,9 +85,7 @@
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
