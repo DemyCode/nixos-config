@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+lib,
   inputs,
   ...
 }:
@@ -84,7 +85,7 @@
     steam
     tig
   ];
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
