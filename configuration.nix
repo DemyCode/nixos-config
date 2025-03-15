@@ -84,6 +84,7 @@
     steam
     tig
   ];
+  fonts.packages = with pkgs; [ nerdfonts ];
 
   # Nvidia setup
   services.xserver.xrandrHeads = [ "HDMI-0" ];
