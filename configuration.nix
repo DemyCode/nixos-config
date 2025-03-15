@@ -81,6 +81,7 @@
     librewolf
     vscode
     wget
+    steam
   ];
 
   # Nvidia setup
