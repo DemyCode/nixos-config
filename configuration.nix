@@ -82,6 +82,7 @@
     vscode
     wget
     steam
+    tig
   ];
 
   # Nvidia setup
@@ -96,6 +97,7 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  nix.settings.experimental-features = "nix-command flakes";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
