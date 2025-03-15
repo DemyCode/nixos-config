@@ -74,6 +74,10 @@
     wget
     tig
     nixfmt
+    gcc
+    python3
+    nodejs
+    unzip
   ];
   programs.steam = {
     enable = true;
