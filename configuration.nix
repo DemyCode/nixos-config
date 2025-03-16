@@ -63,7 +63,7 @@
         #  thunderbird
       ];
   };
-  programs.nix-ld.enable = true;
+  # programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     inputs.nix-software-center.packages.${system}.nix-software-center
@@ -75,13 +75,16 @@
     tig
     nixfmt
     gcc
-    python3
     nodejs
-    python312Packages.jupytext
     unzip
     lua
     uv
     discord-ptb
+    python312
+    python312Packages.pynvim
+    python312Packages.jupytext
+    python312Packages.jupyter-core
+    python312Packages.jupyter-client
   ];
   programs.steam = {
     enable = true;
