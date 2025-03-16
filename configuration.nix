@@ -81,6 +81,7 @@
     unzip
     lua
     uv
+    discord-ptb
   ];
   programs.steam = {
     enable = true;
