@@ -77,7 +77,10 @@
     gcc
     python3
     nodejs
+    python312Packages.jupytext
     unzip
+    lua
+    uv
   ];
   programs.steam = {
     enable = true;
