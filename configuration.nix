@@ -80,17 +80,21 @@
     lua
     uv
     discord-ptb
-    python312
-    python312Packages.pynvim
-    python312Packages.jupytext
-    python312Packages.jupyter-core
-    python312Packages.jupyter-client
+    (pkgs.python3.withPackages (python-pkgs:
+      with python-pkgs; [
+        python312
+        python312Packages.pynvim
+        python312Packages.jupytext
+        python312Packages.jupyter-core
+        python312Packages.jupyter-client
+      ]))
     (lutris.override {
       extraLibraries = pkgs:
         [
           # List library dependencies here
         ];
     })
+    cargo
   ];
   programs.steam = {
     enable = true;
