@@ -85,6 +85,12 @@
     python312Packages.jupytext
     python312Packages.jupyter-core
     python312Packages.jupyter-client
+    (lutris.override {
+      extraLibraries = pkgs:
+        [
+          # List library dependencies here
+        ];
+    })
   ];
   programs.steam = {
     enable = true;
