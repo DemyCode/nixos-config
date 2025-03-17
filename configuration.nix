@@ -63,7 +63,7 @@
         #  thunderbird
       ];
   };
-  # programs.nix-ld.enable = true;
+  programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     inputs.nix-software-center.packages.${system}.nix-software-center
