@@ -95,6 +95,8 @@
         ];
     })
     cargo
+    just
+    ripgrep
   ];
   programs.steam = {
     enable = true;
