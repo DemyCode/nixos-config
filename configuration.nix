@@ -99,6 +99,7 @@
     cargo
     just
     ripgrep
+    xclip
   ];
   programs.steam = {
     enable = true;
