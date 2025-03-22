@@ -100,6 +100,7 @@
     just
     ripgrep
     xclip
+    wireguard-tools
   ];
   programs.steam = {
     enable = true;
