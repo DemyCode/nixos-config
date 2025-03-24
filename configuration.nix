@@ -96,11 +96,10 @@
           # List library dependencies here
         ];
     })
-    cargo
     just
     ripgrep
     xclip
-    wireguard-tools
+    # wireguard-tools
   ];
   programs.steam = {
     enable = true;

@@ -11,6 +11,7 @@ return {
           -- '.git',
           -- '.DS_Store',
           -- 'thumbs.db',
+          "__pycache__",
         },
         never_show = {},
       },
