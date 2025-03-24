@@ -10,11 +10,24 @@ return {
     },
     picker = {
       sources = {
+        files = {
+          hidden = true,
+          ignored = true,
+          exclude = {
+            "node_modules",
+            ".git",
+            "__pycache__",
+            ".venv",
+            ".mypy_cache",
+            ".hypothesis",
+            ".pytest_cache",
+            ".ruff_cache",
+          },
+        },
         explorer = {
           hidden = true,
           ignored = true,
-          -- your explorer picker configuration comes here
-          -- or leave it empty to use the default settings
+          exclude = { "__pycache__" },
         },
       },
     },
