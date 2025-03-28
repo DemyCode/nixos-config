@@ -67,12 +67,10 @@
   };
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.android_sdk.accept_license = true;
   environment.systemPackages = with pkgs; [
     inputs.nix-software-center.packages.${system}.nix-software-center
     git
     spotify
-    android-studio-full
     librewolf
     vscode
     wget
@@ -83,6 +81,7 @@
     unzip
     lua
     uv
+    mediawriter
     discord-ptb
     (pkgs.python3.withPackages (python-pkgs:
       with python-pkgs; [
