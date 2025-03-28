@@ -22,6 +22,7 @@ return {
             ".hypothesis",
             ".pytest_cache",
             ".ruff_cache",
+            "target",
           },
         },
         explorer = {

@@ -67,10 +67,12 @@
   };
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.android_sdk.accept_license = true;
   environment.systemPackages = with pkgs; [
     inputs.nix-software-center.packages.${system}.nix-software-center
     git
     spotify
+    android-studio-full
     librewolf
     vscode
     wget
@@ -124,7 +126,7 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
   nix.settings.experimental-features = "nix-command flakes";
 
