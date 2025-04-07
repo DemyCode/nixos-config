@@ -6,7 +6,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     {
       # Use this for all other targets
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
@@ -17,5 +17,12 @@
         ];
         specialArgs = { inherit inputs; };
       };
+      homeConfigurations = {
+            "mehdib" = home-manager.lib.homeManagerConfiguration {
+                # Note: I am sure this could be done better with flake-utils or something
+                pkgs = import nixpkgs { system = "x86_64-linux"; };
+                modules = [ ./home.nix ];
+            };
+        };
     };
 }
