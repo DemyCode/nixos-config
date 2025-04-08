@@ -40,6 +40,7 @@
         python312Packages.jupyter-client
         python312Packages.pip
       ]))
+    tree-sitter
   ];
 
   programs.zsh = {
@@ -60,7 +61,6 @@
         "${config.home.homeDirectory}/nixos-config/starter";
     };
   };
-
   home.sessionVariables = { EDITOR = "nvim"; };
 
   # Let Home Manager install and manage itself.
