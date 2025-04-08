@@ -30,6 +30,7 @@
     texliveTeTeX
     mermaid-cli
     fd
+    gh
     (python3.withPackages (python-pkgs:
       with python-pkgs; [
         python312
