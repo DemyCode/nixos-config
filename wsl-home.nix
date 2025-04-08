@@ -25,6 +25,7 @@
     go
     cargo
     luajitPackages.luarocks_bootstrap
+    ruby
     (python3.withPackages (python-pkgs:
       with python-pkgs; [
         python312
@@ -32,6 +33,7 @@
         python312Packages.jupytext
         python312Packages.jupyter-core
         python312Packages.jupyter-client
+        python312Packages.pip
       ]))
   ];
 
