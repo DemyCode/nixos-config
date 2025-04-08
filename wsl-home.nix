@@ -26,6 +26,10 @@
     cargo
     luajitPackages.luarocks_bootstrap
     ruby
+    tectonic
+    texliveTeTeX
+    mermaid-cli
+    fd
     (python3.withPackages (python-pkgs:
       with python-pkgs; [
         python312
