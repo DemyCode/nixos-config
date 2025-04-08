@@ -23,6 +23,11 @@
                 pkgs = import nixpkgs { system = "x86_64-linux"; };
                 modules = [ ./home.nix ];
             };
+            "mehdi-wsl" = home-manager.lib.homeManagerConfiguration {
+                # Note: I am sure this could be done better with flake-utils or something
+                pkgs = import nixpkgs { system = "x86_64-linux"; };
+                modules = [ ./wsl-home.nix ];
+            };
         };
     };
 }
