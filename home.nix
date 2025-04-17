@@ -1,8 +1,6 @@
-{ config, pkgs, lib, ... }:
-
-{
-  home.username = "mehdib";
-  home.homeDirectory = "/home/mehdib";
+{ config, pkgs, lib, ... }: {
+  home.username = builtins.getEnv "USER";
+  home.homeDirectory = builtins.getEnv "HOME";
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 

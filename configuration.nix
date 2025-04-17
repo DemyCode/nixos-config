@@ -2,9 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
-
-{
+{ config, pkgs, lib, inputs, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   boot.loader.efi.canTouchEfiVariables = true;
