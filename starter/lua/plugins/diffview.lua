@@ -25,16 +25,4 @@ return {
     opts = { current_line_blame = true },
     lazy = false,
   },
-  {
-    "pwntester/octo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-web-devicons",
-    },
-    opts = {
-      use_local_fs = true,
-    },
-    lazy = false,
-  },
 }
