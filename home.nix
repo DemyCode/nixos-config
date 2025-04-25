@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     gcc
+    dig
     lua
     git
     wget
@@ -33,6 +34,7 @@
         python312Packages.jupyter-core
         python312Packages.jupyter-client
       ]))
+    helm
   ];
 
   home.pointerCursor = let
