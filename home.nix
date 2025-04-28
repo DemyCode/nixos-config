@@ -8,6 +8,14 @@
     gcc
     dig
     lua
+    wget
+    tig
+    nixfmt
+    gcc
+    nodejs
+    unzip
+    lua
+    uv
     git
     wget
     tig
