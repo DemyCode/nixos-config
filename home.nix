@@ -34,7 +34,15 @@
         python312Packages.jupyter-core
         python312Packages.jupyter-client
       ]))
-    helm
+    (wrapHelm kubernetes-helm {
+      plugins = with pkgs.kubernetes-helmPlugins; [
+        helm-secrets
+        helm-diff
+        helm-s3
+        helm-git
+      ];
+    })
+    docker
   ];
 
   home.pointerCursor = let
