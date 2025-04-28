@@ -71,14 +71,6 @@
     spotify
     librewolf
     vscode
-    wget
-    tig
-    nixfmt
-    gcc
-    nodejs
-    unzip
-    lua
-    uv
     mediawriter
     discord-ptb
     (pkgs.python3.withPackages (python-pkgs:
