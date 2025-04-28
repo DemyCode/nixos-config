@@ -12,7 +12,7 @@ return {
       sources = {
         files = {
           hidden = true,
-          ignored = false,
+          ignored = true,
           exclude = {
             "node_modules",
             ".git",
