@@ -23,6 +23,8 @@ return {
             ".pytest_cache",
             ".ruff_cache",
             "target",
+            ".angular",
+            ".husky",
           },
         },
         explorer = {

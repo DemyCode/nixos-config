@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, ... }: {
   home.username = builtins.getEnv "USER";
   home.homeDirectory = builtins.getEnv "HOME";
 
@@ -88,13 +88,11 @@
     "./.config/nvim/" = {
       source = config.lib.file.mkOutOfStoreSymlink
         "${config.home.homeDirectory}/nixos-config/starter";
-      # recursive = true;
     };
   };
 
   home.sessionVariables = { EDITOR = "nvim"; };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.neovim = { enable = true; };
 }
