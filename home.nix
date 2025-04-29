@@ -51,6 +51,7 @@
       ];
     })
     docker
+    awscli2
   ];
 
   home.pointerCursor = let
