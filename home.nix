@@ -35,6 +35,7 @@
     cargo
     luajitPackages.luarocks_bootstrap
     wslu
+    poetry
     librewolf
     (python3.withPackages (python-pkgs:
       with python-pkgs; [
