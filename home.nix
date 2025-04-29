@@ -50,6 +50,7 @@
         helm-git
       ];
     })
+    docker
   ];
 
   home.pointerCursor = let
