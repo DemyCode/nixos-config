@@ -34,6 +34,8 @@
     go
     cargo
     luajitPackages.luarocks_bootstrap
+    wslu
+    librewolf
     (python3.withPackages (python-pkgs:
       with python-pkgs; [
         python312
