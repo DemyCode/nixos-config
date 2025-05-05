@@ -1,11 +1,13 @@
 { config, pkgs, ... }: {
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  home.username = "mehdib";
+  home.homeDirectory = "/home/mehdib";
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     gcc
+    cascadia-code
     dig
     lua
     wget
@@ -37,13 +39,12 @@
     wslu
     poetry
     librewolf
-    (python3.withPackages (python-pkgs:
+    (python312.withPackages (python-pkgs:
       with python-pkgs; [
-        python312
-        python312Packages.pynvim
-        python312Packages.jupytext
-        python312Packages.jupyter-core
-        python312Packages.jupyter-client
+        pynvim
+        jupytext
+        jupyter-core
+        jupyter-client
       ]))
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [

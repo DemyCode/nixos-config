@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.nix-software-center.url = "github:snowfallorg/nix-software-center";
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
@@ -11,7 +11,14 @@
     # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       modules =
-        [ ./configuration.nix inputs.home-manager.nixosModules.default ];
+        [ ./configuration.nix 
+	home-manager.nixosModules.home-manager
+ {
+home-manager.useGlobalPkgs = true;
+home-manager.useUserPackages = true;
+home-manager.users.mehdib = ./home.nix;
+}
+ ];
       specialArgs = { inherit inputs; };
     };
     homeConfigurations = {

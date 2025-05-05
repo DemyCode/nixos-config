@@ -5,11 +5,11 @@
 { config, pkgs, lib, inputs, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
+  # Wifi Card and ethernet 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -73,13 +73,12 @@
     vscode
     mediawriter
     discord-ptb
-    (pkgs.python3.withPackages (python-pkgs:
+    (pkgs.python312.withPackages (python-pkgs:
       with python-pkgs; [
-        python312
-        python312Packages.pynvim
-        python312Packages.jupytext
-        python312Packages.jupyter-core
-        python312Packages.jupyter-client
+        pynvim
+        jupytext
+        jupyter-core
+        jupyter-client
       ]))
     (lutris.override {
       extraLibraries = pkgs:
@@ -105,7 +104,7 @@
     (builtins.attrValues pkgs.nerd-fonts);
 
   # Nvidia setup
-  services.xserver.xrandrHeads = [ "HDMI-0" ];
+  # services.xserver.xrandrHeads = [ "HDMI-0" ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
   hardware.opengl.enable = true;
@@ -113,10 +112,11 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = false;
+    open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
+
   nix.settings.experimental-features = "nix-command flakes";
 
   # Open ports in the firewall.
