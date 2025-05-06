@@ -22,9 +22,9 @@ return {
             ".hypothesis",
             ".pytest_cache",
             ".ruff_cache",
-            "target",
             ".angular",
             ".husky",
+            ".cargo",
           },
         },
         explorer = {

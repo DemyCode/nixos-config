@@ -34,7 +34,6 @@
     lazygit
     fzf
     go
-    cargo
     luajitPackages.luarocks_bootstrap
     wslu
     poetry
