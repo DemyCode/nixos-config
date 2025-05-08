@@ -38,13 +38,7 @@
     wslu
     poetry
     librewolf
-    (python312.withPackages (python-pkgs:
-      with python-pkgs; [
-        pynvim
-        jupytext
-        jupyter-core
-        jupyter-client
-      ]))
+    dysk
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-secrets
