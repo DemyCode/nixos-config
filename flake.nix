@@ -10,15 +10,15 @@
     # Use this for all other targets
     # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      modules =
-        [ ./configuration.nix 
-	home-manager.nixosModules.home-manager
- {
-home-manager.useGlobalPkgs = true;
-home-manager.useUserPackages = true;
-home-manager.users.mehdib = ./home.nix;
-}
- ];
+      modules = [
+        ./configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.mehdib = ./home.nix;
+        }
+      ];
       specialArgs = { inherit inputs; };
     };
     homeConfigurations = {

@@ -25,6 +25,7 @@ return {
             ".angular",
             ".husky",
             ".cargo",
+            "target",
           },
         },
         explorer = {
