@@ -3,9 +3,36 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, ... }: {
-  imports = [ ];
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  imports = [ ./hardware-configuration.nix ];
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # Wifi Card and ethernet 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Enable the X11 windowing system.
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   users.users.nixos = {
     isNormalUser = true;
@@ -17,6 +44,20 @@
   };
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
+
+  # Nvidia setup
+  # services.xserver.xrandrHeads = [ "HDMI-0" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics.enable = true;
+  hardware.opengl.enable = true;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+  };
 
   nix.settings.experimental-features = "nix-command flakes";
 

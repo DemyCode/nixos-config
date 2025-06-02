@@ -10,35 +10,33 @@
   outputs = { self, nixpkgs, home-manager, nixos-wsl, ... }@inputs: {
     # Use this for all other targets
     # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.nixos = ./home.nix;
-        }
-      ];
-      specialArgs = { inherit inputs; };
-    };
-    nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./wsl-configuration.nix
-        {
-          system.stateVersion = "24.11";
-          wsl.enable = true;
-        }
-        nixos-wsl.nixosModules.default
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.nixos = ./home.nix;
-        }
-      ];
-      specialArgs = { inherit inputs; };
+    nixosConfigurations = {
+      default = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./configuration-asus.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.nixos = ./home.nix;
+          }
+        ];
+        specialArgs = { inherit inputs; };
+      };
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration-wsl.nix
+          nixos-wsl.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.nixos = ./home.nix;
+          }
+        ];
+        specialArgs = { inherit inputs; };
+      };
     };
     homeConfigurations = {
       "default" = home-manager.lib.homeManagerConfiguration {
