@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
-  home.username = "mehdi";
-  home.homeDirectory = "/home/mehdi";
+  home.username = "nixos";
+  home.homeDirectory = "/home/nixos";
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
@@ -17,7 +17,6 @@
     nodejs
     unzip
     lua
-    uv
     git
     wget
     tig
@@ -26,12 +25,13 @@
     nodejs
     unzip
     lua
-    uv
     fish
     mercurialFull
     ripgrep
     fd
     lazygit
+    cargo
+    keychain
     fzf
     go
     luajitPackages.luarocks_bootstrap

@@ -54,9 +54,8 @@
     pulse.enable = true;
   };
 
-  users.users.mehdib = {
+  users.users.nixos = {
     isNormalUser = true;
-    description = "Mehdi Bekhtaoui";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs;
       [
