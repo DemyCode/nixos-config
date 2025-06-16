@@ -26,6 +26,7 @@ return {
             ".husky",
             ".cargo",
             "target",
+            ".gradle",
           },
         },
         explorer = {

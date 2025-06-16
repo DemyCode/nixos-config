@@ -27,6 +27,7 @@
     lua
     fish
     mercurialFull
+    zulu
     ripgrep
     fd
     lazygit
@@ -36,9 +37,9 @@
     go
     luajitPackages.luarocks_bootstrap
     wslu
-    poetry
     librewolf
     dysk
+    poetry
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-secrets
@@ -86,6 +87,10 @@
       update = "sudo nixos-rebuild switch";
     };
     history.size = 10000;
+  };
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   home.file = {
