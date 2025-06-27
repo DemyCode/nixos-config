@@ -9,50 +9,34 @@
   inputs.nix-index-database.url = "github:nix-community/nix-index-database";
   inputs.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, home-manager, nixos-wsl, nix-index-database, ...
-    }@inputs: {
+  outputs =
+    { self, nixpkgs, home-manager, nixos-wsl, nix-index-database, ... }@inputs:
+    let
+      nixos-func = modules:
+        (nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = modules;
+          specialArgs = { inherit inputs; };
+        });
+      home-manager-nixos-modules = [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.nixos = ./home.nix;
+        }
+      ];
       # Use this for all other targets
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
+    in {
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./configuration-asus.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.nixos = ./home.nix;
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
-        msi = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./configuration-msi.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.nixos = ./home.nix;
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
-        wsl = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./configuration-wsl.nix
-            nix-index-database.nixosModules.nix-index
-            nixos-wsl.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.nixos = ./home.nix;
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
+        nixos = (nixos-func
+          ([ ./configuration-asus.nix ] ++ home-manager-nixos-modules));
+        msi = (nixos-func
+          ([ ./configuration-msi.nix ] ++ home-manager-nixos-modules));
+        wsl = (nixos-func
+          ([ ./configuration-wsl.nix nixos-wsl.nixosModules.default ]
+            ++ home-manager-nixos-modules));
       };
       homeConfigurations = {
         "default" = home-manager.lib.homeManagerConfiguration {
