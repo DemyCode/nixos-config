@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration-asus.nix ./configuration.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

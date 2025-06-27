@@ -25,6 +25,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.nixos = ./home.nix;
         }
+        nix-index-database.nixosModules.nix-index
       ];
       # Use this for all other targets
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>

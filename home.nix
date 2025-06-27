@@ -6,40 +6,19 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    gcc
     cascadia-code
-    dig
-    lua
-    wget
     tig
-    nixfmt
-    gcc
-    nodejs
-    unzip
-    lua
+      fd
     git
     wget
-    tig
-    nixfmt
-    gcc
-    nodejs
     unzip
-    lua
     fish
-    mercurialFull
-    zulu
     ripgrep
-    fd
     lazygit
-    cargo
     keychain
-    fzf
-    go
-    luajitPackages.luarocks_bootstrap
     wslu
     librewolf
     dysk
-    poetry
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-secrets
@@ -48,33 +27,6 @@
         helm-git
       ];
     })
-    docker
-    awscli2
-    (python312.withPackages (ps:
-      with ps; [
-        pynvim
-        jupyter
-        cairosvg
-        pnglatex
-        plotly
-        kaleido
-        pyperclip
-        nbformat
-        pillow
-        jupyter
-        ipython
-        pip
-        (buildPythonPackage rec {
-          pname = "jupyter_client";
-          version = "8.6.3";
-          format = "wheel";
-          src = fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-NbOglHxKbp1Ynrl9fUzV6Q+RDucxAWEfASg3Mr1tlBk=";
-          };
-          doCheck = false;
-        })
-      ]))
   ];
 
   programs.nix-index = {
@@ -106,10 +58,49 @@
         pyperclip
         nbformat
       ];
-    extraPackages = with pkgs;
-      [
-        # ... other packages
-        imagemagick # for image rendering
-      ];
+    extraPackages = with pkgs; [
+      # ... other packages
+      imagemagick # for image rendering
+      nixfmt # for formatting Nix files
+      shfmt
+      stylua
+      lua
+      ripgrep
+      fzf
+      ruby
+      cargo
+      go
+      nodejs
+      zulu
+      luajitPackages.luarocks_bootstrap
+      poetry
+      (python312.withPackages (ps:
+        with ps; [
+          pynvim
+          jupyter
+          cairosvg
+          pnglatex
+          plotly
+          kaleido
+          pyperclip
+          nbformat
+          pillow
+          jupyter
+          ipython
+          pip
+          (buildPythonPackage rec {
+            pname = "jupyter_client";
+            version = "8.6.3";
+            format = "wheel";
+            src = fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-NbOglHxKbp1Ynrl9fUzV6Q+RDucxAWEfASg3Mr1tlBk=";
+            };
+            doCheck = false;
+          })
+        ]))
+      docker
+      mercurialFull
+    ];
   };
 }

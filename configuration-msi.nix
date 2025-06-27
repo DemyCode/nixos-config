@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, ... }: {
-  imports = [ ./hardware-configuration-msi.nix ];
+  imports = [ ./hardware-configuration-msi.nix ./configuration.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

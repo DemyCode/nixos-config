@@ -7,14 +7,6 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  users.users.nixos = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
-  };
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
 
