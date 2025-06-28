@@ -9,21 +9,34 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # Wifi Card and ethernet 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  networking.hostName = "nixos"; # Define your hostname.
+  networking.networkmanager.enable = true;
+  time.timeZone = "Europe/Paris";
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "fr_FR.UTF-8";
+    LC_IDENTIFICATION = "fr_FR.UTF-8";
+    LC_MEASUREMENT = "fr_FR.UTF-8";
+    LC_MONETARY = "fr_FR.UTF-8";
+    LC_NAME = "fr_FR.UTF-8";
+    LC_NUMERIC = "fr_FR.UTF-8";
+    LC_PAPER = "fr_FR.UTF-8";
+    LC_TELEPHONE = "fr_FR.UTF-8";
+    LC_TIME = "fr_FR.UTF-8";
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
+services.printing.enable=true;
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -42,14 +55,13 @@
         #  thunderbird
       ];
   };
-  programs.nix-ld.enable = true;
   programs.steam.enable = true;
-  nixpkgs.config.allowUnfree = true;
 
   # Nvidia setup
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
   hardware.opengl.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -59,7 +71,6 @@
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  nix.settings.experimental-features = "nix-command flakes";
   environment.systemPackages = with pkgs; [ spotify ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
