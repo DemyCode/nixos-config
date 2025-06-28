@@ -8,7 +8,7 @@
   home.packages = with pkgs; [
     cascadia-code
     tig
-      fd
+    fd
     git
     wget
     unzip
