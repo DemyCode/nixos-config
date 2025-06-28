@@ -36,7 +36,11 @@
     layout = "us";
     variant = "";
   };
-services.printing.enable=true;
+  services.printing.enable = true;
+  services.openssh = { enable = true; };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFQADV9Bz8wBDUpV31xw5IOv04PlEJ5x11cp/VQjx3l6 nixos@nixos"
+  ];
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
