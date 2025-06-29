@@ -68,14 +68,14 @@
   hardware.bluetooth.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  environment.systemPackages = with pkgs; [ spotify ];
+  environment.systemPackages = with pkgs; [ spotify lutris ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
   # Open ports in the firewall.
