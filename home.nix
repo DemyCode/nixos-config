@@ -15,10 +15,12 @@
     fish
     ripgrep
     lazygit
+    git-extras
     keychain
     wslu
     librewolf
     dysk
+    gcc
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-secrets
@@ -39,6 +41,10 @@
     "./.config/nvim/" = {
       source = config.lib.file.mkOutOfStoreSymlink
         "${config.home.homeDirectory}/nixos-config/starter";
+    };
+    "./.config/lazygit/config" = {
+      source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/nixos-config/lazygit/config";
     };
   };
 
