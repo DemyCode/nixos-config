@@ -70,6 +70,7 @@
       ruby
       cargo
       go
+      libgccjit
       nodejs
       zulu
       luajitPackages.luarocks_bootstrap
