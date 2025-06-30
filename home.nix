@@ -63,10 +63,17 @@
         plotly # for image rendering
         pyperclip
         nbformat
+        kaleido # for image rendering
       ];
     extraPackages = with pkgs; [
       # ... other packages
       imagemagick # for image rendering
+      tree-sitter # for syntax highlighting
+      wl-clipboard # for clipboard integration
+      terraform
+      gcc
+      julia
+
       nixfmt # for formatting Nix files
       shfmt
       stylua
