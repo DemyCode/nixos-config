@@ -67,7 +67,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  environment.systemPackages = with pkgs; [ spotify lutris ];
+  environment.systemPackages = with pkgs; [ spotify lutris kitty ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
   # Open ports in the firewall.
