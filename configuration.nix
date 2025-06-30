@@ -9,8 +9,16 @@
 
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
-
+  users.users.nixos = {
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs;
+      [
+        #  thunderbird
+      ];
+  };
   nix.settings.experimental-features = "nix-command flakes";
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

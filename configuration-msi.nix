@@ -51,14 +51,6 @@
     pulse.enable = true;
   };
 
-  users.users.nixos = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
-  };
   programs.steam.enable = true;
 
   # Nvidia setup

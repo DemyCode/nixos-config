@@ -9,14 +9,6 @@
 
 {
   imports = [ ./configuration.nix ];
-  users.users.nixos = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
-  };
   wsl.enable = true;
   wsl.defaultUser = "nixos";
 
