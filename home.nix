@@ -46,6 +46,10 @@
       source = config.lib.file.mkOutOfStoreSymlink
         "${config.home.homeDirectory}/nixos-config/lazygit/config";
     };
+    "./.config/kitty/kitty.conf" = {
+      source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/nixos-config/kitty/kitty.conf";
+    };
   };
 
   home.sessionVariables = { EDITOR = "nvim"; };

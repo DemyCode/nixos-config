@@ -66,8 +66,14 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
-
-  environment.systemPackages = with pkgs; [ spotify lutris kitty ];
+  programs.fish.enable = true;
+  environment.systemPackages = with pkgs; [
+    spotify
+    qbittorrent
+    lutris
+    kitty
+    discord
+  ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
   # Open ports in the firewall.
