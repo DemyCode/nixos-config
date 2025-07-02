@@ -15,6 +15,7 @@
     fish
     ripgrep
     lazygit
+    delta
     git-extras
     keychain
     wslu
@@ -49,6 +50,10 @@
     "./.config/kitty/kitty.conf" = {
       source = config.lib.file.mkOutOfStoreSymlink
         "${config.home.homeDirectory}/nixos-config/kitty/kitty.conf";
+    };
+    "./.config/lazygit/config.yml" = {
+      source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/nixos-config/lazygit/config.yml";
     };
   };
 
