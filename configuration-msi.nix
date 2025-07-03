@@ -73,6 +73,7 @@
     lutris
     kitty
     discord
+    inputs.nix-software-center.packages.${system}.nix-software-center
   ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
