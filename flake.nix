@@ -18,12 +18,12 @@
           modules = modules;
           specialArgs = { inherit inputs; };
         });
-      home-manager-nixos-modules = [
+      home-manager-func = home-manager-module: [
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.nixos = ./home.nix;
+          home-manager.users.nixos = home-manager-module;
         }
         nix-index-database.nixosModules.nix-index
       ];
@@ -31,18 +31,18 @@
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
     in {
       nixosConfigurations = {
-        asus = nixos-func
-          ([ ./configuration-asus.nix ] ++ home-manager-nixos-modules);
+        asus = nixos-func ([ ./configuration-asus.nix ]
+          ++ home-manager-func ./home-desktop.nix);
         msi = nixos-func
-          ([ ./configuration-msi.nix ] ++ home-manager-nixos-modules);
+          ([ ./configuration-msi.nix ] ++ home-manager-func ./home-desktop.nix);
         wsl = nixos-func
           ([ ./configuration-wsl.nix nixos-wsl.nixosModules.default ]
-            ++ home-manager-nixos-modules);
+            ++ home-manager-func ./home-wsl.nix);
       };
       homeConfigurations = {
         "default" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
-          modules = [ ./home.nix ];
+          modules = [ ./home-wsl.nix ];
         };
       };
     };

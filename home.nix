@@ -19,7 +19,6 @@
     git-extras
     keychain
     wslu
-    librewolf
     dysk
     gcc
     (wrapHelm kubernetes-helm {
@@ -42,14 +41,6 @@
     "./.config/nvim/" = {
       source = config.lib.file.mkOutOfStoreSymlink
         "${config.home.homeDirectory}/nixos-config/starter";
-    };
-    "./.config/lazygit/config" = {
-      source = config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/nixos-config/lazygit/config";
-    };
-    "./.config/kitty/kitty.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/nixos-config/kitty/kitty.conf";
     };
     "./.config/lazygit/config.yml" = {
       source = config.lib.file.mkOutOfStoreSymlink

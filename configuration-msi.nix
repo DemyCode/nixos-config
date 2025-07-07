@@ -74,6 +74,7 @@
     kitty
     discord
     inputs.nix-software-center.packages.${system}.nix-software-center
+    vlc
   ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
