@@ -56,7 +56,6 @@
   # Nvidia setup
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
-  hardware.opengl.enable = true;
   hardware.bluetooth.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
@@ -75,6 +74,7 @@
     discord
     inputs.nix-software-center.packages.${system}.nix-software-center
     vlc
+    monero-gui
   ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
