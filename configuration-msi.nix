@@ -62,6 +62,8 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -82,7 +84,8 @@
     monero-gui
   ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
-
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
