@@ -1,6 +1,4 @@
 { config, pkgs, ... }: {
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 

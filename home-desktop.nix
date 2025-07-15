@@ -1,4 +1,7 @@
 { config, pkgs, ... }: {
+  home.username = "nixos";
+  home.homeDirectory = "/home/nixos";
+
   imports = [ ./home.nix ];
   home.packages = with pkgs; [ librewolf ];
   home.file = {

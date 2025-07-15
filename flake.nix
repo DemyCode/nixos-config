@@ -8,9 +8,12 @@
   inputs.nix-index-database.url = "github:nix-community/nix-index-database";
   inputs.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nix-software-center.url = "github:snowfallorg/nix-software-center";
+  # Use `github:nix-darwin/nix-darwin/nix-darwin-25.05` to use Nixpkgs 25.05.
+  inputs.nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+  inputs.nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs =
-    { self, nixpkgs, home-manager, nixos-wsl, nix-index-database, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-wsl, nix-index-database
+    , nix-darwin, ... }@inputs:
     let
       nixos-func = modules:
         (nixpkgs.lib.nixosSystem {
@@ -44,6 +47,20 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [ ./home-wsl.nix ];
         };
+      };
+      darwinConfigurations."Mehdis-iMac-Pro" = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+          ./configuration-darwin.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.Mehdis-iMac-Pro = import ./home-darwin.nix;
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
+        ];
       };
     };
 }
