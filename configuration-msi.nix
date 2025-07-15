@@ -81,14 +81,16 @@
     inputs.nix-software-center.packages.${system}.nix-software-center
     vlc
     monero-gui
-    virtualbox
+    qemu
+    quickemu
   ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
-  virtualisation.virtualbox.host.enable = true;
-
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "nixos" ];
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
