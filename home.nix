@@ -16,8 +16,6 @@
     delta
     git-extras
     keychain
-    wslu
-    dysk
     gcc
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
@@ -70,7 +68,7 @@
       wl-clipboard # for clipboard integration
       terraform
       gcc
-      julia
+      julia-bin
 
       nixfmt # for formatting Nix files
       shfmt
