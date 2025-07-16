@@ -12,6 +12,20 @@
   outputs =
     { self, nixpkgs, home-manager, nixos-wsl, nix-index-database, ... }@inputs:
     let
+      deepMerge = lhs: rhs:
+        if builtins.typeOf lhs != builtins.typeOf rhs then
+          lhs
+        else if builtins.isList lhs then
+          lhs ++ rhs
+        else if builtins.isAttrs lhs then
+          lhs // rhs // builtins.mapAttrs (name: value:
+            if builtins.hasAttr name rhs then
+              deepMerge value (rhs.${name})
+            else
+              value) lhs
+        else
+          rhs;
+    in deepMerge (let
       nixos-func = modules:
         (nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -45,5 +59,22 @@
           modules = [ ./home-wsl.nix ];
         };
       };
-    };
+    }) ({
+      nixosConfigurations = {
+        dada = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ({ config, pkgs, lib, inputs, ... }: {
+              nixpkgs.config.check = false;
+              fileSystems."/" = {
+                device =
+                  "/dev/disk/by-uuid/88a22c74-e2d3-4e02-ab95-5211a3e407eb";
+                fsType = "ext4";
+              };
+              boot.loader.systemd-boot.enable = true;
+            })
+          ];
+        };
+      };
+    });
 }
