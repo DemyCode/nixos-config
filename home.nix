@@ -21,6 +21,9 @@
     wslu
     dysk
     gcc
+    ghostscript
+    tectonic
+    mermaid-cli
     (wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-secrets
