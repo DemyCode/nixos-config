@@ -118,6 +118,7 @@
         ]))
       docker
       mercurialFull
+      rust-analyzer
     ];
   };
 }
