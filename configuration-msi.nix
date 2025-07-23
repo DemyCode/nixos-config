@@ -83,6 +83,7 @@
     monero-gui
     qemu
     quickemu
+    ffmpeg
   ];
   networking.firewall.allowedTCPPorts = [ 57621 ];
   programs.appimage.enable = true;
