@@ -2,13 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }: {
-  imports = [ ./hardware-configuration-msi.nix ./configuration.nix ];
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration-msi.nix
+    ./configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # Wifi Card and ethernet 
+  # Wifi Card and ethernet
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Paris";
@@ -42,7 +52,9 @@
     variant = "";
   };
   services.printing.enable = true;
-  services.openssh = { enable = true; };
+  services.openssh = {
+    enable = true;
+  };
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFQADV9Bz8wBDUpV31xw5IOv04PlEJ5x11cp/VQjx3l6 nixos@nixos"
   ];
