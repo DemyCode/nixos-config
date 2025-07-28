@@ -90,7 +90,6 @@
     lutris
     kitty
     discord
-    inputs.nix-software-center.packages.${system}.nix-software-center
     vlc
     monero-gui
     qemu
