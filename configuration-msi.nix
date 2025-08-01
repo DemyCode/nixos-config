@@ -96,7 +96,13 @@
     qemu
     quickemu
     ffmpeg
+    (pkgs.makeAutostartItem {
+      name = "mullvad-vpn";
+      package = pkgs.mullvad-vpn;
+    })
   ];
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
   networking.firewall.allowedTCPPorts = [ 57621 ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
