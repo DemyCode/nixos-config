@@ -2,7 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   imports = [ ];
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -11,14 +18,18 @@
   nixpkgs.config.allowUnfree = true;
   users.users.nixos = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
+    packages = with pkgs; [
+      #  thunderbird
+    ];
   };
   nix.settings.experimental-features = "nix-command flakes";
   virtualisation.docker.enable = true;
+  nix.gc.automatic = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
