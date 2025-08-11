@@ -1,7 +1,4 @@
-{ config, pkgs, ... }:
-{
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
+{ config, pkgs, ... }: {
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
@@ -19,8 +16,6 @@
     delta
     git-extras
     keychain
-    wslu
-    dysk
     gcc
     ghostscript
     tectonic
@@ -43,22 +38,22 @@
 
   home.file = {
     "./.config/nvim/" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/starter";
+      source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/nixos-config/starter";
     };
     "./.config/lazygit/config.yml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/lazygit/config.yml";
+      source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/nixos-config/lazygit/config.yml";
     };
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
-    extraPython3Packages =
-      ps: with ps; [
+    extraPython3Packages = ps:
+      with ps; [
         # ... other python packages
         pynvim
         jupyter-client
@@ -76,7 +71,7 @@
       wl-clipboard # for clipboard integration
       terraform
       gcc
-      julia
+      julia-bin
 
       nixfmt # for formatting Nix files
       shfmt
@@ -92,8 +87,8 @@
       zulu
       luajitPackages.luarocks_bootstrap
       poetry
-      (python312.withPackages (
-        ps: with ps; [
+      (python312.withPackages (ps:
+        with ps; [
           pynvim
           jupyter
           cairosvg
@@ -116,8 +111,7 @@
             };
             doCheck = false;
           })
-        ]
-      ))
+        ]))
       docker
       mercurialFull
     ];
