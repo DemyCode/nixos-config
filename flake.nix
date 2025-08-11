@@ -48,8 +48,9 @@
           modules = [ ./home-wsl.nix ];
         };
       };
-      darwinConfigurations."Mehdis-iMac-Pro" = nix-darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
+
+      darwinConfigurations."Bekhtaouis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration-darwin.nix
@@ -57,7 +58,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.mehdibekhtaoui = import ./home-darwin.nix;
+            home-manager.users.bekhtaoui = import ./home-darwin.nix;
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
