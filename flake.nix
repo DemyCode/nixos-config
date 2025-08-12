@@ -11,11 +11,22 @@
   # Use `github:nix-darwin/nix-darwin/nix-darwin-25.05` to use Nixpkgs 25.05.
   inputs.nix-darwin.url = "github:nix-darwin/nix-darwin/master";
   inputs.nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.mac-app-util.url = "github:hraban/mac-app-util";
 
-  outputs = { self, nixpkgs, home-manager, nixos-wsl, nix-index-database
-    , nix-darwin, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixos-wsl,
+      nix-index-database,
+      nix-darwin,
+      mac-app-util,
+      ...
+    }@inputs:
     let
-      nixos-func = modules:
+      nixos-func =
+        modules:
         (nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = modules;
@@ -32,15 +43,18 @@
       ];
       # Use this for all other targets
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
-    in {
+    in
+    {
       nixosConfigurations = {
-        asus = nixos-func ([ ./configuration-asus.nix ]
-          ++ home-manager-func ./home-desktop.nix);
-        msi = nixos-func
-          ([ ./configuration-msi.nix ] ++ home-manager-func ./home-desktop.nix);
-        wsl = nixos-func
-          ([ ./configuration-wsl.nix nixos-wsl.nixosModules.default ]
-            ++ home-manager-func ./home-wsl.nix);
+        asus = nixos-func ([ ./configuration-asus.nix ] ++ home-manager-func ./home-desktop.nix);
+        msi = nixos-func ([ ./configuration-msi.nix ] ++ home-manager-func ./home-desktop.nix);
+        wsl = nixos-func (
+          [
+            ./configuration-wsl.nix
+            nixos-wsl.nixosModules.default
+          ]
+          ++ home-manager-func ./home-wsl.nix
+        );
       };
       homeConfigurations = {
         "default" = home-manager.lib.homeManagerConfiguration {
@@ -54,11 +68,15 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration-darwin.nix
+          mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.bekhtaoui = import ./home-darwin.nix;
+            home-manager.sharedModules = [
+              mac-app-util.homeManagerModules.default
+            ];
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
