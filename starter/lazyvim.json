@@ -3,7 +3,9 @@
     "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.coding.mini-surround",
+    "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.illuminate",
+    "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.lang.angular",
     "lazyvim.plugins.extras.lang.docker",
@@ -18,8 +20,12 @@
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.lsp.none-ls",
+    "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.smear-cursor",
-    "lazyvim.plugins.extras.util.dot"
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.octo",
+    "lazyvim.plugins.extras.util.startuptime"
   ],
   "install_version": 8,
   "news": {
