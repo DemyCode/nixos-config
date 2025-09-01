@@ -11,6 +11,7 @@
     notion-app
     zoom-us
     podman
+    google-chrome
   ];
   programs.vscode.enable = true;
   home.file = {
