@@ -72,7 +72,6 @@
       imagemagick # for image rendering
       tree-sitter # for syntax highlighting
       wl-clipboard # for clipboard integration
-      terraform
       gcc
       julia-bin
 
