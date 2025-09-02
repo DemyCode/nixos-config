@@ -66,6 +66,15 @@
           };
           modules = [ ./home-wsl.nix ];
         };
+        "nixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config = {
+              allowUnfree = true;
+            };
+          };
+          modules = [ ./home-wsl.nix ];
+        };
       };
 
       darwinConfigurations."Bekhtaouis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
