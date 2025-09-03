@@ -82,7 +82,7 @@
               allowUnfree = true;
             };
           };
-          modules = [ ./home-jovyan.nix ];
+          modules = [ ./home-mehdibekhtaoui.nix ];
         };
       };
 
