@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
-  home.username = "mehdibekhtaoui";
-  home.homeDirectory = "/home/mehdibekhtaoui";
+  home.username = "jovyan";
+  home.homeDirectory = "/home/jovyan";
   home.packages = with pkgs; [
     cloudflared
   ];
