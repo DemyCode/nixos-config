@@ -5,6 +5,7 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    eza
     cascadia-code
     gh
     tig
