@@ -86,10 +86,7 @@
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     spotify
-    (pkgs.makeAutostartItem {
-      name = "qbittorrent";
-      package = pkgs.qbittorrent;
-    })
+    qbittorrent
     lutris
     kitty
     discord
