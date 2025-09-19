@@ -6,6 +6,7 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     eza
+    rsync
     dysk
     cascadia-code
     gh
