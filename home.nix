@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     eza
     gource
+    claude-code
     rsync
     dysk
     cascadia-code

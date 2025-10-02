@@ -88,6 +88,13 @@
 
       darwinConfigurations."Bekhtaouis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config = {
+            allowUnfree = true;
+            allowBroken = true;
+          };
+        };
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration-darwin.nix
