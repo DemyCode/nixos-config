@@ -10,6 +10,7 @@
     claude-code
     rsync
     dysk
+    dust
     cascadia-code
     gh
     tig
@@ -56,6 +57,9 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+  home.shellAliases = {
+    ls = "eza";
+  };
 
   programs.home-manager.enable = true;
   programs.neovim = {
@@ -76,7 +80,7 @@
       # ... other packages
       imagemagick # for image rendering
       tree-sitter # for syntax highlighting
-      wl-clipboard # for clipboard integration
+      # wl-clipboard # for clipboard integration
       gcc
       julia-bin
 
