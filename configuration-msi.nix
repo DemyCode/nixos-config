@@ -73,8 +73,20 @@
   # Nvidia setup
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth = {
+    enable = true; # enables support for Bluetooth
+    powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    settings = {
+      General = {
+        Privacy = "device";
+        JustWorksRepairing = "always";
+        Class = "0x000100";
+        FastConnectable = "true";
+      };
+    };
+  };
+  hardware.xone.enable = true;
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -85,6 +97,8 @@
   };
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
+    linuxKernel.packages.linux_zen.xone
+    signal-desktop
     spotify
     qbittorrent
     lutris

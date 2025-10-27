@@ -8,6 +8,7 @@
     librewolf
     tor-browser
     thunderbird
+    opencode
   ];
   home.file = {
     "./.config/kitty/kitty.conf" = {
