@@ -1,17 +1,17 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs";
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+  inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL";
   inputs.nix-index-database.url = "github:nix-community/nix-index-database";
   inputs.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nix-software-center.url = "github:snowfallorg/nix-software-center";
   # Use `github:nix-darwin/nix-darwin/nix-darwin-25.05` to use Nixpkgs 25.05.
-  inputs.nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+  inputs.nix-darwin.url = "github:nix-darwin/nix-darwin";
   inputs.nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.mac-app-util.url = "github:hraban/mac-app-util";
+  # inputs.mac-app-util.url = "github:hraban/mac-app-util";
 
   outputs =
     {
@@ -21,7 +21,7 @@
       nixos-wsl,
       nix-index-database,
       nix-darwin,
-      mac-app-util,
+      # mac-app-util,
       ...
     }@inputs:
     let
@@ -86,7 +86,7 @@
         };
       };
 
-      darwinConfigurations."Bekhtaouis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
@@ -98,14 +98,14 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration-darwin.nix
-          mac-app-util.darwinModules.default
+          # mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bekhtaoui = import ./home-darwin.nix;
+            home-manager.users.admPX-MQ4LQGK4QM = import ./home-darwin.nix;
             home-manager.sharedModules = [
-              mac-app-util.homeManagerModules.default
+              # mac-app-util.homeManagerModules.default
             ];
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix

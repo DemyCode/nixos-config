@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 {
-  home.username = "bekhtaoui";
-  home.homeDirectory = "/Users/bekhtaoui";
+  home.username = "admPX-MQ4LQGK4QM";
+  home.homeDirectory = "/Users/admPX-MQ4LQGK4QM";
 
   home.packages = with pkgs; [
-    librewolf
+    # librewolf
     kitty
-    spotify
-    slack
-    notion-app
-    zoom-us
+    # spotify
+    # slack
+    # notion-app
+    # zoom-us
     podman
-    google-chrome
+    # google-chrome
   ];
   programs.vscode.enable = true;
   home.file = {
