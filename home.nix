@@ -8,6 +8,7 @@
     eza
     gource
     claude-code
+    p7zip
     rsync
     dysk
     dust
@@ -44,6 +45,12 @@
     enableFishIntegration = true;
   };
   programs.fish.enable = true;
+  programs.git = {
+    enable = true;
+    aliases = {
+      diverge = "!f() { git checkout -b \"$(git branch --show-current)--$1\"; }; f";
+    };
+  };
 
   home.file = {
     "./.config/nvim/" = {
