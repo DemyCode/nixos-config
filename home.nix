@@ -5,6 +5,7 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    p7zip
     eza
     gource
     claude-code
