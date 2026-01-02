@@ -51,6 +51,9 @@
     aliases = {
       diverge = "!f() { git checkout -b \"$(git branch --show-current)--$1\"; }; f";
     };
+    settings = {
+      push = { autoSetupRemote = true; };
+    };
   };
 
   home.file = {
