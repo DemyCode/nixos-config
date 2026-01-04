@@ -5,6 +5,7 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    trash-cli
     p7zip
     eza
     gource
