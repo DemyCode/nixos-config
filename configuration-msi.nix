@@ -115,6 +115,8 @@
     wayland-utils # Wayland utilities
     wl-clipboard # Command-line copy/paste utilities for Wayland
     linuxKernel.packages.linux_zen.xone
+    # librewolf
+    firefox
     wl-clipboard # Command-line copy/paste utilities for Wayland
     # Non-KDE graphical packages
     hardinfo2 # System information and benchmarks for Linux systems
