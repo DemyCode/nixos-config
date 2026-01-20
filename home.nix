@@ -5,6 +5,7 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    uv
     trash-cli
     p7zip
     eza
@@ -53,7 +54,9 @@
       diverge = "!f() { git checkout -b \"$(git branch --show-current)--$1\"; }; f";
     };
     settings = {
-      push = { autoSetupRemote = true; };
+      push = {
+        autoSetupRemote = true;
+      };
     };
   };
 
