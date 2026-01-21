@@ -5,7 +5,7 @@
 
   imports = [ ./home.nix ];
   home.packages = with pkgs; [
-    # librewolf
+    librewolf
     tor-browser
     thunderbird
     opencode
