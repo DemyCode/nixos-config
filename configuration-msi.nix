@@ -178,4 +178,5 @@
     "adbusers"
     "kvm"
   ];
+  networking.wireless.enable = true;
 }
