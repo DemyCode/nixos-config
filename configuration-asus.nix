@@ -2,13 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }: {
-  imports = [ ./hardware-configuration-asus.nix ./configuration.nix ];
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration-asus.nix
+    ./configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # Wifi Card and ethernet 
+  # Wifi Card and ethernet
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable the X11 windowing system.
