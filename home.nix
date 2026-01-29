@@ -10,6 +10,7 @@
     p7zip
     eza
     gource
+    opencode
     claude-code
     p7zip
     rsync
