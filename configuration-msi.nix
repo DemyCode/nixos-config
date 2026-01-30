@@ -98,6 +98,7 @@
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     # KDE
+    libvirt
     kdePackages.discover # Optional: Install if you use Flatpak or fwupd firmware update sevice
     kdePackages.kcalc # Calculator
     kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
@@ -157,9 +158,17 @@
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "nixos" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "nixos" ];
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  programs.virt-manager.enable = true;
+
+  users.groups.libvirtd.members = [ "your_username" ];
+
+  virtualisation.libvirtd.enable = true;
+
+  virtualisation.spiceUSBRedirection.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
