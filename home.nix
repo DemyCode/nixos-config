@@ -5,6 +5,8 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    terraform
+    opentofu
     uv
     trash-cli
     p7zip
