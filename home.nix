@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     terraform
     opentofu
+    vscode
     uv
     trash-cli
     p7zip
