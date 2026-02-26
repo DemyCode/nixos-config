@@ -20,7 +20,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # Wifi Card and ethernet
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 

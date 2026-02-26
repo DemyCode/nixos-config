@@ -12,7 +12,7 @@
 {
   imports = [ ];
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
 
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
