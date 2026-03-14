@@ -9,6 +9,9 @@
   inputs,
   ...
 }:
+let
+  secrets = builtins.fromTOML (builtins.readFile ./secrets.toml);
+in
 {
   imports = [
     ./hardware-configuration-msi.nix
@@ -188,4 +191,25 @@
     "kvm"
   ];
   networking.wireless.enable = true;
+
+  services.restic.backups.msi-backup = {
+    initialize = true;
+    repository = "b2:msi-backup-5d841ca7-4eac-455d-9f12-8ab57a33eb36:msi-backup-5d841ca7-4eac-455d-9f12-8ab57a33eb36";
+    environmentFile = toString (
+      pkgs.writeText "restic-b2.env" ''
+        B2_ACCOUNT_KEY=${secrets.B2_ACCOUNT_KEY}
+        B2_ACCOUNT_ID=${secrets.B2_ACCOUNT_ID}
+        RESTIC_PASSWORD=${secrets.RESTIC_PASSWORD}
+      ''
+    );
+    paths = [
+      "/home"
+    ];
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+    runCheck = true;
+    progressFps = 0.1;
+  };
 }
