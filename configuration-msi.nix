@@ -212,4 +212,6 @@ in
     runCheck = true;
     progressFps = 0.1;
   };
+
+  services.swapspace.enable = true;
 }
