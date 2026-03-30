@@ -100,6 +100,7 @@ in
   };
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
+    ollama-cuda
     # KDE
     libvirt
     kdePackages.discover # Optional: Install if you use Flatpak or fwupd firmware update sevice
