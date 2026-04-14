@@ -215,4 +215,5 @@ in
   };
 
   services.swapspace.enable = true;
+  services.i2p.enable = true;
 }
