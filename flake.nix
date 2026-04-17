@@ -38,6 +38,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.nixos = home-manager-module;
+home-manager.backupFileExtension = "bak";
         }
         nix-index-database.nixosModules.nix-index
       ];
