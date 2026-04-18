@@ -47,7 +47,7 @@ home-manager.backupFileExtension = "bak";
     in
     {
       nixosConfigurations = {
-        asus = nixos-func ([ ./configuration-asus.ix ] ++ home-manager-func ./home-desktop.nix);
+        asus = nixos-func ([ ./configuration-asus.nix ] ++ home-manager-func ./home-desktop.nix);
         msi = nixos-func ([ ./configuration-msi.nix ] ++ home-manager-func ./home-desktop.nix);
         wsl = nixos-func (
           [
