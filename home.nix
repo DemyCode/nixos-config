@@ -65,11 +65,17 @@
   };
 
   home.file = {
-    "./.config/nvim/" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/starter";
+    ".config/nvim/lua" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${toString config.home.homeDirectory}/nixos-config/starter/lua";
     };
-    "./.config/lazygit/config.yml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/lazygit/config.yml";
+    ".config/nvim/lazy-lock.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${toString config.home.homeDirectory}/nixos-config/starter/lazy-lock.json";
+    };
+    ".config/nvim/lazyvim.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${toString config.home.homeDirectory}/nixos-config/starter/lazyvim.json";
+    };
+    ".config/lazygit/config.yml" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${toString config.home.homeDirectory}/nixos-config/lazygit/config.yml";
     };
   };
 
@@ -83,6 +89,7 @@
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
+    extraLuaConfig = ''dofile("${toString config.home.homeDirectory}/nixos-config/starter/init.lua")'';
     extraPython3Packages =
       ps: with ps; [
         # ... other python packages
