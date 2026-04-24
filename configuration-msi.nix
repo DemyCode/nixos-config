@@ -102,6 +102,7 @@ in
   environment.systemPackages = with pkgs; [
     ollama-cuda
     lmstudio
+    prismlauncher
     # KDE
     libvirt
     kdePackages.discover # Optional: Install if you use Flatpak or fwupd firmware update sevice
@@ -134,6 +135,7 @@ in
     lutris
     kitty
     discord
+    cinny-desktop
     inputs.nix-software-center.packages.${system}.nix-software-center
     # vlc
     monero-gui
