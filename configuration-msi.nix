@@ -62,7 +62,7 @@ in
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFQADV9Bz8wBDUpV31xw5IOv04PlEJ5x11cp/VQjx3l6 nixos@nixos"
   ];
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -136,7 +136,7 @@ in
     kitty
     discord
     cinny-desktop
-    inputs.nix-software-center.packages.${system}.nix-software-center
+    inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
     # vlc
     monero-gui
     cemu

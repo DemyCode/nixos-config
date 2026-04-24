@@ -54,12 +54,13 @@
   programs.fish.enable = true;
   programs.git = {
     enable = true;
-    aliases = {
-      diverge = "!f() { git checkout -b \"$(git branch --show-current)--$1\"; }; f";
-    };
+    signing.format = null;
     settings = {
       push = {
         autoSetupRemote = true;
+      };
+      alias = {
+        diverge = "!f() { git checkout -b \"$(git branch --show-current)--$1\"; }; f";
       };
     };
   };
@@ -83,6 +84,8 @@
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
+    withRuby = true;
+    withPython3 = true;
     extraPython3Packages =
       ps: with ps; [
         # ... other python packages
