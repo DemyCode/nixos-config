@@ -218,4 +218,31 @@ in
   };
 
   services.swapspace.enable = true;
+
+  systemd.services.restic-forget-container-backup = {
+    description = "Restic forget/prune and cache cleanup for container-backup-homelab";
+    serviceConfig = {
+      Type = "oneshot";
+      EnvironmentFile = toString (
+        pkgs.writeText "restic-b2.env" ''
+          B2_ACCOUNT_KEY=${secrets.B2_ACCOUNT_KEY}
+          B2_ACCOUNT_ID=${secrets.B2_ACCOUNT_ID}
+          RESTIC_PASSWORD=${secrets.RESTIC_PASSWORD}
+        ''
+      );
+      ExecStart = [
+        "${pkgs.restic}/bin/restic --repo b2:container-backup-homelab:container-backup-homelab forget --prune --group-by \"\" --keep-last 1 --keep-tag undying"
+        "${pkgs.restic}/bin/restic cache --cleanup"
+      ];
+    };
+  };
+
+  systemd.timers.restic-forget-container-backup = {
+    description = "Weekly restic forget/prune for container-backup-homelab";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+  };
 }
