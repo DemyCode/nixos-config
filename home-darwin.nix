@@ -15,7 +15,7 @@
   ];
   programs.vscode.enable = true;
   home.file = {
-    "./.config/kitty/kitty.conf" = {
+    ".config/kitty/kitty.conf" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/kitty/mac-kitty.conf";
     };
   };
