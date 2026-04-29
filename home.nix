@@ -85,14 +85,16 @@
   };
 
   programs.home-manager.enable = true;
+  xdg.configFile."nvim/init.lua" = lib.mkForce { enable = false; };
+
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = false;
     extraPackages = with pkgs; [
       tree-sitter
       nodejs
     ];
-    # withRuby = true;
-    # withPython3 = true;
     # extraPython3Packages =
     #   ps: with ps; [
     #     # ... other python packages
