@@ -16,6 +16,15 @@
 
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      opencode = prev.opencode.overrideAttrs (old: {
+        node_modules = old.node_modules.overrideAttrs (_: {
+          outputHash = "sha256-Zfgx97up2qPnDSGYFTIjdEioLHp4YCZSIgMGR5Zi6k8=";
+        });
+      });
+    })
+  ];
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = [
