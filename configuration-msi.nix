@@ -13,6 +13,10 @@ let
   secrets = builtins.fromTOML (builtins.readFile ./secrets.toml);
 in
 {
+swapDevices = [{
+  device = "/var/lib/swapfile";
+  size = 16*1024; # 16 GiB
+}];
   imports = [
     ./hardware-configuration-msi.nix
     ./configuration.nix
@@ -100,6 +104,7 @@ in
   };
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
+    jdk25
     ollama-cuda
     lmstudio
     prismlauncher
