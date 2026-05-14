@@ -16,6 +16,13 @@
 
   programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
+  ];
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = [

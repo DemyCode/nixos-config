@@ -7,7 +7,6 @@
   inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL";
   inputs.nix-index-database.url = "github:nix-community/nix-index-database";
   inputs.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.nix-software-center.url = "github:snowfallorg/nix-software-center";
   # Use `github:nix-darwin/nix-darwin/nix-darwin-25.05` to use Nixpkgs 25.05.
   inputs.nix-darwin.url = "github:nix-darwin/nix-darwin";
   inputs.nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
