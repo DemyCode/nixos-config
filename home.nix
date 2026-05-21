@@ -91,71 +91,71 @@
     enable = true;
     withRuby = false;
     withPython3 = false;
-    extraPackages = with pkgs; [
-      tree-sitter
-      nodejs
-    ];
-    # extraPython3Packages =
-    #   ps: with ps; [
-    #     # ... other python packages
-    #     pynvim
-    #     jupyter-client
-    #     cairosvg # for image rendering
-    #     pnglatex # for image rendering
-    #     plotly # for image rendering
-    #     pyperclip
-    #     nbformat
-    #     kaleido # for image rendering
-    #   ];
     # extraPackages = with pkgs; [
-    #   # ... other packages
-    #   imagemagick # for image rendering
-    #   tree-sitter # for syntax highlighting
-    #   # wl-clipboard # for clipboard integration
-    #   gcc
-    #   julia-bin
-    #
-    #   nixfmt # for formatting Nix files
-    #   shfmt
-    #   stylua
-    #   lua
-    #   ripgrep
-    #   fzf
-    #   ruby
-    #   cargo
-    #   go
-    #   libgccjit
+    #   tree-sitter
     #   nodejs
-    #   zulu
-    #   luajitPackages.luarocks_bootstrap
-    #   poetry
-    #   (python312.withPackages (
-    #     ps: with ps; [
-    #       pynvim
-    #       jupyter
-    #       cairosvg
-    #       pnglatex
-    #       plotly
-    #       kaleido
-    #       pyperclip
-    #       nbformat
-    #       pillow
-    #       ipython
-    #       pip
-    #       (buildPythonPackage rec {
-    #         pname = "jupyter_client";
-    #         version = "8.6.3";
-    #         format = "wheel";
-    #         src = fetchPypi {
-    #           inherit pname version;
-    #           sha256 = "sha256-NbOglHxKbp1Ynrl9fUzV6Q+RDucxAWEfASg3Mr1tlBk=";
-    #         };
-    #         doCheck = false;
-    #       })
-    #     ]
-    #   ))
-    #   docker
-    #   mercurialFull
     # ];
+    extraPython3Packages =
+      ps: with ps; [
+        # ... other python packages
+        pynvim
+        jupyter-client
+        cairosvg # for image rendering
+        pnglatex # for image rendering
+        plotly # for image rendering
+        pyperclip
+        nbformat
+        kaleido # for image rendering
+      ];
+    extraPackages = with pkgs; [
+      # ... other packages
+      imagemagick # for image rendering
+      tree-sitter # for syntax highlighting
+      # wl-clipboard # for clipboard integration
+      gcc
+      julia-bin
+
+      nixfmt # for formatting Nix files
+      shfmt
+      stylua
+      lua
+      ripgrep
+      fzf
+      ruby
+      cargo
+      go
+      libgccjit
+      nodejs
+      zulu
+      luajitPackages.luarocks_bootstrap
+      poetry
+      (python312.withPackages (
+        ps: with ps; [
+          pynvim
+          jupyter
+          cairosvg
+          pnglatex
+          plotly
+          kaleido
+          pyperclip
+          nbformat
+          pillow
+          ipython
+          pip
+          (buildPythonPackage rec {
+            pname = "jupyter_client";
+            version = "8.6.3";
+            format = "wheel";
+            src = fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-NbOglHxKbp1Ynrl9fUzV6Q+RDucxAWEfASg3Mr1tlBk=";
+            };
+            doCheck = false;
+          })
+        ]
+      ))
+      docker
+      mercurialFull
+    ];
   };
 }
