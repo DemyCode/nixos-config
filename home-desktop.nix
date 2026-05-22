@@ -9,6 +9,7 @@
     tor-browser
     thunderbird
     opencode
+    jellyfin-desktop
   ];
   home.file = {
     ".config/kitty/kitty.conf" = {
