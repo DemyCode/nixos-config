@@ -204,6 +204,7 @@ swapDevices = [{
   services.restic.backups.msi-backup = {
     initialize = true;
     repository = "b2:msi-backup-5d841ca7-4eac-455d-9f12-8ab57a33eb36:msi-backup-5d841ca7-4eac-455d-9f12-8ab57a33eb36";
+    backupPrepareCommand = "${pkgs.restic}/bin/restic unlock --remove-all || true";
     environmentFile = toString (
       pkgs.writeText "restic-b2.env" ''
         B2_ACCOUNT_KEY=${secrets.B2_ACCOUNT_KEY}
@@ -244,6 +245,38 @@ swapDevices = [{
 
   systemd.timers.restic-forget-container-backup = {
     description = "Weekly restic forget/prune for container-backup-homelab";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+  };
+
+  systemd.services.restic-prune-msi-backup = {
+    description = "Restic prune and cache cleanup for msi-backup";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      EnvironmentFile = toString (
+        pkgs.writeText "restic-b2.env" ''
+          B2_ACCOUNT_KEY=${secrets.B2_ACCOUNT_KEY}
+          B2_ACCOUNT_ID=${secrets.B2_ACCOUNT_ID}
+          RESTIC_PASSWORD=${secrets.RESTIC_PASSWORD}
+        ''
+      );
+    };
+
+    script = ''
+      ${pkgs.restic}/bin/restic --repo b2:msi-backup-5d841ca7-4eac-455d-9f12-8ab57a33eb36:msi-backup-5d841ca7-4eac-455d-9f12-8ab57a33eb36 \
+        forget --prune --group-by "" --keep-last 1 --keep-tag undying
+      ${pkgs.restic}/bin/restic cache --cleanup
+    '';
+  };
+
+  systemd.timers.restic-prune-msi-backup = {
+    description = "Weekly restic prune for msi-backup";
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = "weekly";

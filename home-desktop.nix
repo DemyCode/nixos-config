@@ -10,6 +10,8 @@
     thunderbird
     opencode
     jellyfin-desktop
+    appflowy
+    spotify
   ];
   home.file = {
     ".config/kitty/kitty.conf" = {
